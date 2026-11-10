@@ -1,7 +1,8 @@
 {
   "name": "学贯 · K12 自学测评",
   "short_name": "学贯",
-  "description": "从幼儿园认字到高中各科自学、随堂测验与期末模拟考，人教版/苏教版对齐",
+  "version": "1.0.0",
+  "description": "从幼儿园到高中全科自学、随堂测验与期末模拟考，人教版/苏教版对齐，接入国家平台正版教材",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "portrait",
