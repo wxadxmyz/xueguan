@@ -1,7 +1,7 @@
 {
   "appId": "com.xueguan.app",
   "appName": "学贯",
-  "webDir": ".",
+  "webDir": "www",
   "server": {
     "androidScheme": "https"
   }
