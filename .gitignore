@@ -13,3 +13,9 @@ Thumbs.db
 # ===== 不应入库的密钥 / 敏感信息 =====
 *.token
 *.secret
+
+# ===== 前端依赖与构建产物（CI 里重新生成） =====
+node_modules/
+android/
+.capacitor/
+.DS_Store
