@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # 创建 GitHub Release 需要写权限（默认令牌为最小权限，须显式声明）
     steps:
       - name: Checkout
         uses: actions/checkout@v4
