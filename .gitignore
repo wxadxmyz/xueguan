@@ -18,4 +18,5 @@ Thumbs.db
 node_modules/
 android/
 .capacitor/
+www/
 .DS_Store
