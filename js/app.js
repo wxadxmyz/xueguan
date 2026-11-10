@@ -112,7 +112,7 @@ function subjectList(g){
 
 function courseView(gradeId, subject){
   const c = COURSES[gradeId+'-'+subject];
-  const backTxt = home.vertical ? '← 返回贯通之路' : '← 返回学科';
+  const backTxt = home.vsub ? '← 返回'+home.vsub+'贯通之路' : '← 返回学科';
   let html = `<div class="back" data-back="subject">${backTxt}</div>
     <div class="section-title">${c.meta.grade} ${c.meta.subject}（${c.meta.edition}${c.meta.volume}）</div>
     <div class="empty" style="padding:8px 4px;color:var(--sub);text-align:left">${c.meta.desc}</div>
@@ -140,7 +140,8 @@ function courseView(gradeId, subject){
 
 function emptyCourse(gradeId, subject){
   const kw = SUBJECT_KEYWORD[subject] || subject;
-  return `<div class="back" data-back="subject">← 返回学科</div>
+  const backTxt = home.vsub ? '← 返回'+home.vsub+'贯通之路' : '← 返回学科';
+  return `<div class="back" data-back="subject">${backTxt}</div>
     <div class="empty">
       <div style="font-size:40px">📖</div>
       <p><b>${GRADES.find(g=>g.id===gradeId).name} · ${subject}</b><br>本课程骨架已就位，完整课文与题库待填充。</p>
@@ -170,8 +171,11 @@ function openLesson(meta){
 }
 
 function renderReading(body, l, meta){
-  body.innerHTML = l.paras.map(p=>`<div class="q"><div class="qt">${p}</div></div>`).join('')
+  let html = '';
+  if(l.illus) html += `<div class="math-illus">${l.illus}</div>`;
+  html += l.paras.map(p=>`<div class="q"><div class="qt">${p}</div></div>`).join('')
     + `<button class="btn" id="markDone">标记为已学完</button>`;
+  body.innerHTML = html;
   $('#markDone').onclick = ()=>{ setDone(meta); body.innerHTML = `<div class="result"><div class="score">✓</div><div class="msg">已记录学习进度</div><button class="btn" onclick="closeLayer()">完成</button></div>`; };
 }
 
@@ -438,7 +442,7 @@ function bindView(){
     const vs = e.target.closest('[data-vsubject]');
     if(vs){ home = {grade:null, subject:null, vertical:true, vsub:vs.dataset.vsubject}; renderHome(); return; }
     const vc = e.target.closest('[data-vgrade]');
-    if(vc){ home = {grade:vc.dataset.vgrade, subject:vc.dataset.vsub, vertical:true, vsub:vc.dataset.vsub}; renderHome(); return; }
+    if(vc){ home = {grade:vc.dataset.vgrade, subject:vc.dataset.vsub, vertical:false, vsub:vc.dataset.vsub}; renderHome(); return; }
     const vbh = e.target.closest('[data-vback="home"]');
     if(vbh){ home = {grade:null, subject:null, vertical:false, vsub:null}; renderHome(); return; }
     const gc = e.target.closest('[data-grade]');
@@ -448,7 +452,7 @@ function bindView(){
     const lc = e.target.closest('[data-lesson]');
     if(lc){ openLesson(JSON.parse(lc.dataset.lesson)); return; }
     const bc = e.target.closest('[data-back]');
-    if(bc){ const b=bc.dataset.back; if(b==='grade'){home={grade:null,subject:null,vertical:false};} else {home.subject=null;} renderHome(); return; }
+    if(bc){ const b=bc.dataset.back; if(b==='grade'){home={grade:null,subject:null,vertical:false,vsub:null};} else { if(home.vsub){ home={grade:null,subject:null,vertical:true,vsub:home.vsub}; } else { home.subject=null; } } renderHome(); return; }
   });
   $('#layerBack').onclick = window.closeLayer;
 }
