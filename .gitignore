@@ -1,0 +1,15 @@
+# ===== 操作系统 / 编辑器垃圾文件 =====
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ===== 日志 / 临时 =====
+*.log
+*.tmp
+
+# ===== 不应入库的密钥 / 敏感信息 =====
+*.token
+*.secret
