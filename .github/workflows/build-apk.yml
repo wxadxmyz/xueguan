@@ -26,6 +26,14 @@ jobs:
       - name: Install Capacitor
         run: npm install
 
+      - name: Prepare web assets
+        # Capacitor 要求 webDir 是一个子目录，不能是仓库根目录 "."。
+        # 这里把网页资源复制到 www/，仓库根目录（Pages 用）保持不变。
+        run: |
+          rm -rf www && mkdir -p www
+          cp index.html manifest.webmanifest .nojekyll www/ 2>/dev/null || true
+          cp -r js css assets www/
+
       - name: Add Android platform
         run: npx cap add android
 
