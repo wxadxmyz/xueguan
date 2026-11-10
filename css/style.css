@@ -142,6 +142,15 @@ body{
 .opt.wrong{border-color:var(--bad);background:#fdecea}
 .q .ex{font-size:13px;color:var(--sub);margin-top:8px;padding:8px 10px;background:#f6f8fc;border-radius:10px}
 
+/* 数学原创插画 */
+.math-illus{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;
+  box-shadow:var(--shadow);margin-bottom:14px;text-align:center}
+.math-illus svg{width:100%;height:auto;max-height:200px;display:inline-block}
+.lecture{font-size:15px;line-height:1.75;color:var(--text)}
+.lecture b{color:var(--primary-d)}
+.formula{display:inline-block;background:#eef3ff;color:var(--primary-d);border-radius:8px;
+  padding:2px 8px;font-weight:700;font-family:"Cambria Math","Times New Roman",serif}
+
 /* 按钮 */
 .btn{display:block;width:100%;padding:15px;border:none;border-radius:14px;background:var(--primary);
   color:#fff;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
